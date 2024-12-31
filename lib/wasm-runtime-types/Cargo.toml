@@ -1,0 +1,12 @@
+[package]
+name = "wasm-runtime-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pool = { path = "../pool" }
+
+wasmer = { version = "5.0.4", default-features = false, features = ["sys", "cranelift"] }
+bincode = "2.0.0-rc.3"
+serde = "1.0.217"
+sendable = "0.6.1"

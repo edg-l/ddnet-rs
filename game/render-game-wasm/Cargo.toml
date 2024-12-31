@@ -1,0 +1,28 @@
+[package]
+name = "render-game-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+cache = { path = "../../lib/cache" }
+config = { path = "../../lib/config" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+wasm-runtime = { path = "../../lib/wasm-runtime" }
+api-wasm-macros = { path = "../../lib/api-wasm-macros" }
+wasm-logic-fs = { path = "../../lib/wasm-logic-fs" }
+wasm-logic-http = { path = "../../lib/wasm-logic-http" }
+wasm-logic-graphics = { path = "../../lib/wasm-logic-graphics" }
+wasm-logic-sound = { path = "../../lib/wasm-logic-sound" }
+sound = { path = "../../lib/sound" }
+game-interface = { path = "../game-interface" }
+client-render-game = { path = "../client-render-game" }
+game-config = { path = "../game-config" }
+
+wasmer = { version = "5.0.4", default-features = false, features = ["sys", "cranelift"] }
+anyhow = { version = "1.0.95", features = ["backtrace"] }
+rayon = "1.10.0"

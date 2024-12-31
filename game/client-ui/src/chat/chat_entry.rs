@@ -1,0 +1,96 @@
+use client_types::chat::ChatMsg;
+use egui::{text::LayoutJob, Align, Color32, FontId, Layout, Stroke, Vec2};
+use game_interface::types::render::character::TeeEye;
+use math::math::vector::vec2;
+use game_base::network::types::chat::NetChatMsgPlayerChannel;
+use ui_base::types::{UiRenderPipe, UiState};
+
+use crate::utils::render_tee_for_ui;
+
+use super::{
+    shared::{entry_frame, MARGIN, MARGIN_FROM_TEE, TEE_SIZE},
+    user_data::UserData,
+};
+
+/// one chat entry
+pub fn render(
+    ui: &mut egui::Ui,
+    pipe: &mut UiRenderPipe<UserData>,
+    ui_state: &mut UiState,
+    msg: &ChatMsg,
+) {
+    entry_frame(
+        ui,
+        match &msg.channel {
+            NetChatMsgPlayerChannel::Global => Stroke::NONE,
+            NetChatMsgPlayerChannel::GameTeam => Stroke::new(2.0, Color32::LIGHT_GREEN),
+            NetChatMsgPlayerChannel::Whisper(_) => Stroke::new(2.0, Color32::RED),
+        },
+        |ui| {
+            ui.add_space(MARGIN);
+            let response = ui.horizontal(|ui| {
+                ui.add_space(MARGIN);
+                ui.add_space(TEE_SIZE + MARGIN_FROM_TEE);
+                ui.style_mut().spacing.item_spacing.x = 4.0;
+                ui.style_mut().spacing.item_spacing.y = 0.0;
+                ui.with_layout(Layout::bottom_up(egui::Align::Min), |ui| {
+                    ui.add_space(2.0);
+                    let text_format = egui::TextFormat {
+                        color: Color32::WHITE,
+                        ..Default::default()
+                    };
+                    let job = LayoutJob::single_section(msg.msg.clone(), text_format);
+                    ui.label(job);
+                    ui.allocate_ui_with_layout(
+                        Vec2::new(ui.available_width(), 14.0),
+                        Layout::left_to_right(Align::Max),
+                        |ui| {
+                            let text_format = egui::TextFormat {
+                                line_height: Some(14.0),
+                                font_id: FontId::proportional(12.0),
+                                valign: Align::BOTTOM,
+                                color: Color32::WHITE,
+                                ..Default::default()
+                            };
+                            let mut job =
+                                LayoutJob::single_section(msg.player.clone(), text_format);
+                            let text_format_clan = egui::TextFormat {
+                                line_height: Some(12.0),
+                                font_id: FontId::proportional(10.0),
+                                valign: Align::BOTTOM,
+                                color: Color32::LIGHT_GRAY,
+                                ..Default::default()
+                            };
+                            job.append(&msg.clan, 4.0, text_format_clan);
+                            ui.label(job);
+                        },
+                    );
+                    ui.add_space(2.0);
+                });
+                ui.add_space(ui.available_width().min(4.0));
+                ui.add_space(MARGIN);
+            });
+            ui.add_space(MARGIN);
+
+            let rect = response.response.rect;
+
+            render_tee_for_ui(
+                pipe.user_data.canvas_handle,
+                pipe.user_data.skin_container,
+                pipe.user_data.render_tee,
+                ui,
+                ui_state,
+                ui.ctx().screen_rect(),
+                Some(ui.clip_rect()),
+                &msg.skin_name,
+                Some(&msg.skin_info),
+                vec2::new(
+                    rect.min.x + MARGIN + TEE_SIZE / 2.0,
+                    rect.min.y + TEE_SIZE / 2.0 + 5.0,
+                ),
+                TEE_SIZE,
+                TeeEye::Normal,
+            );
+        },
+    );
+}

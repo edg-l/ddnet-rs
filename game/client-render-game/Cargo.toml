@@ -1,0 +1,33 @@
+[package]
+name = "client-render-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+ui-base = { path = "../../lib/ui-base" }
+math = { path = "../../lib/math" }
+config = { path = "../../lib/config" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+pool = { path = "../../lib/pool" }
+sound = { path = "../../lib/sound" }
+
+client-containers = { path = "../client-containers" }
+client-render-base = { path = "../client-render-base" }
+client-render = { path = "../client-render" }
+client-types = { path = "../client-types" }
+client-ui = { path = "../client-ui" }
+game-config = { path = "../game-config" }
+game-base = { path = "../game-base" }
+vanilla = { path = "../vanilla" }
+game-interface = { path = "../game-interface" }
+map = { path = "../map" }
+
+num-traits = "0.2.19"
+rayon = "1.10.0"
+egui = { version = "0.30.0", default-features = false, features = ["serde"] }
+serde = { version = "1.0.217", features = ["derive"] }
+url = { version = "2.5.4", features = ["serde"] }

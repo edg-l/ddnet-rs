@@ -1,0 +1,35 @@
+name: Input (mouse, controller etc.) related bugs
+description: Create a input related bug report
+labels:
+  - B - bug
+  - DS - input
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Description of the problem you're having
+    validations:
+      required: true
+  - type: textarea
+    id: device-type
+    attributes:
+      label: Devices affected
+      description: Which devices cause problems?
+      placeholder: |
+         controller,
+         touch screen
+    validations:
+      required: true
+  - type: textarea
+    id: ddnet-version
+    attributes:
+      label: DDNet version
+      description: What version of DDNet are you using?
+      placeholder: 15.1.0
+    validations:
+      required: true

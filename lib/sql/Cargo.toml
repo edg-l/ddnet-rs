@@ -1,0 +1,11 @@
+[package]
+name = "sql"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+game-database = { path = "../game-database" }
+
+anyhow = { version = "1.0.95", features = ["backtrace"] }
+sqlx = { version = "0.8.2", features = ["mysql", "sqlite", "any", "runtime-tokio-rustls", "chrono"] }
+ddnet-account-sql = { version = "0.3.0", features = ["sqlite"] }

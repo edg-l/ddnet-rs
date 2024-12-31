@@ -1,0 +1,11 @@
+[package]
+name = "ui-generic"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ui-base = { path = "../ui-base" }
+graphics = { path = "../graphics" }
+math = { path = "../math" }
+
+egui = { version = "0.30.0", default-features = false, features = ["serde"] }

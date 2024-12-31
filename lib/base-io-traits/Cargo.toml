@@ -1,0 +1,15 @@
+[package]
+name = "base-io-traits"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+
+anyhow = { version = "1.0.95", features = ["backtrace"] }
+async-trait = "0.1.83"
+bytes = "1.9.0"
+url = "2.5.4"
+thiserror = "2.0.9"
+serde = { version = "1.0.217", features = ["derive"] }
+rustc-hash = "2.1.0"

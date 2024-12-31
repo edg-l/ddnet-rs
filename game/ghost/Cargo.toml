@@ -1,0 +1,10 @@
+[package]
+name = "ghost"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+demo = { path = "../demo" }
+game-interface = { path = "../game-interface" }
+
+pool = { path = "../../lib/pool" }

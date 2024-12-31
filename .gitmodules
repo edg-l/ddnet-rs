@@ -1,0 +1,9 @@
+[submodule "data"]
+	path = data
+	url = https://github.com/ddnet/ddnet-rs-data
+	shallow = true
+
+[submodule "misc"]
+	path = misc
+	url = https://github.com/ddnet/ddnet-rs-misc
+	shallow = true

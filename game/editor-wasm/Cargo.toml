@@ -1,0 +1,31 @@
+[package]
+name = "editor-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+cache = { path = "../../lib/cache" }
+config = { path = "../../lib/config" }
+graphics = { path = "../../lib/graphics" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+wasm-runtime = { path = "../../lib/wasm-runtime" }
+api-wasm-macros = { path = "../../lib/api-wasm-macros" }
+wasm-logic-fs = { path = "../../lib/wasm-logic-fs" }
+wasm-logic-http = { path = "../../lib/wasm-logic-http" }
+wasm-logic-graphics = { path = "../../lib/wasm-logic-graphics" }
+wasm-logic-sound = { path = "../../lib/wasm-logic-sound" }
+sound = { path = "../../lib/sound" }
+editor = { path = "../editor", default-features = false }
+
+wasmer = { version = "5.0.4", default-features = false, features = ["sys", "cranelift"] }
+anyhow = { version = "1.0.95", features = ["backtrace"] }
+rayon = "1.10.0"
+egui = { version = "0.30.0", default-features = false, features = ["serde"] }
+libloading = "0.8.6"
+
+[features]
+legacy = ["editor/legacy"]
+
+default = ["legacy"]

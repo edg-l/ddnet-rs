@@ -1,0 +1,34 @@
+[package]
+name = "game-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+image = { path = "../../lib/image" }
+graphics-types = { path = "../../lib/graphics-types" }
+pool = { path = "../../lib/pool" }
+hiarc = { path = "../../lib/hiarc", features = ["enable_time"] }
+
+map = { path = "../map" }
+game-interface = { path = "../game-interface" }
+game-config = { path = "../game-config" }
+
+rayon = "1.10.0"
+num-derive = "0.4.2"
+num-traits = "0.2.19"
+flate2 = "1.0.35"
+anyhow = { version = "1.0.95", features = ["backtrace"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "ddnet", features = ["serde", "serde_impl"] }
+serde = { version = "1.0.217", features = ["derive"] }
+indexmap = "2.7.0"
+time = { version = "0.3.37", features = ["serde"] }
+serde_with = "3.12.0"
+thiserror = "2.0.9"
+
+[package.metadata.cargo-machete]
+ignored = ["num-traits"]
+
+[dev-dependencies]
+rustc-hash = "2.1.0"
